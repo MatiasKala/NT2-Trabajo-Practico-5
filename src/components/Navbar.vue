@@ -1,12 +1,12 @@
 <template>
 
     <div id="navigator">
-		<button id="reset"> New colors</button>
+		<button id="reset" @click="resetear()" > New colors</button>
 		<span id="message"> </span>
 
 		<button id="easy" :class="getClass(!isHard)" @click="cambiarAfacil()">easy</button>
 		<button id="hard" :class="getClass(isHard)" @click="cambiarAdificil()">hard</button>
-        <Body :isHard="isHard" :cantidadCuadrados="cantidadCuadrados"/>
+        <Body :isHard="isHard" />
 	</div>
 
 </template>
@@ -27,17 +27,20 @@
     data () {
       return {
         isHard:true,
-		cantidadCuadrados:6
       }
     },
     methods: {
 		cambiarAfacil(){
-			this.isHard = false
-			this.cantidadCuadrados = 3 	
+			if(this.isHard){
+				this.isHard = false
+				this.resetear()
+			}
 		},
 		cambiarAdificil(){
-			this.isHard = true
-			this.cantidadCuadrados = 6 	
+			if(!this.isHard){
+				this.isHard = true
+				this.resetear()
+			}
 		},
 		getClass(bool){
 			if(bool){
@@ -45,8 +48,10 @@
                   'selected'
 				]
 			}
-
 		},
+		resetear(){
+			this.$emit('resetear',this.isHard)
+		}
     },
     computed: {
 		
