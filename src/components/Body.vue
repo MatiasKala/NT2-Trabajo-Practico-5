@@ -2,14 +2,14 @@
 
   <div id="container">
     <div class="squares">
-      <Square/>
-      <Square/>
-      <Square/>
+      <Square :color="colors[0]"/>
+      <Square :color="colors[1]"/>
+      <Square :color="colors[2]"/>
     </div>   
-    <div v-show="son6" class="squares">
-      <Square/>
-      <Square/>
-      <Square/>
+    <div v-show="isHard" class="squares">
+      <Square :color="colors[3]"/>
+      <Square :color="colors[4]"/>
+      <Square :color="colors[5]"/>
     </div>   
   </div>
 
@@ -20,27 +20,40 @@
   import Square from "./Square.vue";
 
   export default  {
-    name: 'body',
-    props: ['isHard'],
+    name: 'body-component',
+    props: ['isHard','cantidadCuadrados'],
     mounted () {
-
+      
     },
     components:{
       Square
     },
     data () {
       return {
-        son6:this.isHard,
-        // colorElegido:this.pickColor(),
+        colors: this.createNewColors(this.cantidadCuadrados),
       }
     },
     methods: {
-      // pickColor(){
-        
-      // }
+      createNewColors(numbers){
+        var arr = [];
+        for (var i = 0; i < numbers; i++) {
+          arr.push(this.createRandomStringColor());
+        }
+          return arr;
+      },
+      createRandomStringColor(){
+        var newColor = "rgb(" + this.randomInt() + ", " + this.randomInt() + ", " + this.randomInt() + ")" ;
+        console.log(newColor);
+        return newColor;
+      },
+      randomInt(){
+        return Math.floor(Math.random() * 256);
+      },
+      pickColor(){
+        return Math.floor(Math.random() * this.cantidadCuadrados );
+      }
     },
     computed: {
-
     }
 }
 

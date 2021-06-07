@@ -1,6 +1,6 @@
 <template>
 
-  <div class="square">
+  <div class="square" :style="{background: color}">
     
   </div>
 
@@ -10,7 +10,7 @@
 
   export default  {
     name: 'square',
-    props: [],
+    props: ['color'],
     mounted () {
 
     },

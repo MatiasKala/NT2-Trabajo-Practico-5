@@ -1,7 +1,7 @@
 <template>
 
-<section class="header">
-  <div id="header">
+<section class="headerStyle">
+  <div id="headerStyle">
 		<h1>The Great <br>
 			<span id="colorDisplay">RGB</span>
 			<br>
@@ -17,7 +17,7 @@
   import Navbar from "./Navbar.vue";
 
   export default  {
-    name: 'header',
+    name: 'header-component',
     props: [],
     mounted () {
       
@@ -42,7 +42,7 @@
 </script>
 
 <style scoped lang="css">
-#header {
+#headerStyle {
 	transition: all 0.3s;
 	background: steelblue;
 	text-transform: uppercase;
