@@ -6,7 +6,7 @@
 
 		<button id="easy" :class="getClass(!isHard)" @click="cambiarAfacil()">easy</button>
 		<button id="hard" :class="getClass(isHard)" @click="cambiarAdificil()">hard</button>
-        <Body :isHard="isHard" />
+        <Body :isHard="isHard" @colorElegido="setColorElegido($event)"  />
 	</div>
 
 </template>
@@ -27,6 +27,7 @@
     data () {
       return {
         isHard:true,
+		colorElegido:"",
       }
     },
     methods: {
@@ -51,6 +52,9 @@
 		},
 		resetear(){
 			this.$emit('resetear',this.isHard)
+		},
+		setColorElegido(color){
+			this.$emit('colorElegidoHeader',color)
 		}
     },
     computed: {

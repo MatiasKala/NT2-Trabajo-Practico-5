@@ -3,11 +3,11 @@
 <section class="headerStyle">
   <div id="headerStyle">
 		<h1>The Great <br>
-			<span id="colorDisplay">RGB</span>
+			<span id="colorDisplay">RGB {{colorElegido}}</span>
 			<br>
 			Guessing Game</h1>
 	</div>
-  <Navbar/>
+  <Navbar @colorElegidoHeader="setColorElegido($event)" />
 </section>
 
 </template>
@@ -27,11 +27,13 @@
     },
     data () {
       return {
-          
+        colorElegido:""
       }
     },
     methods: {
-      
+      setColorElegido(color){
+        this.colorElegido = color.slice(3)
+      },
     },
     computed: {
 

@@ -25,9 +25,6 @@
     beforeMount(){
       this.$parent.$on('resetear',this.changeData)
     },
-    updated(){
-      // console.log('Es dificil Updated ',this.esDificil);
-    },
     mounted () {
       this.init()
     },
@@ -39,16 +36,16 @@
         colors:[],
         pickedColor:"",
         esDificil:true,
-        
       }
     },
     methods: {
       init(){
         this.colors = this.createNewColors(this.esDificil)
         this.pickedColor = this.colors[this.pickColor()]
+        this.$emit('colorElegido',this.pickedColor)
+        console.log(this.pickedColor);
       },
       createNewColors(bool){
-        console.log('CREATE NEW', bool);
         let numbers= bool ? 6 : 3
         console.log(numbers);
         var arr = [];
@@ -65,16 +62,14 @@
         return Math.floor(Math.random() * 256);
       },
       pickColor(){
-        return Math.floor(Math.random() * this.isHard? 6 : 3 );
-      },
-      reset(){
-        this.colors = this.createNewColors(this.esDificil)
-        this.pickedColor = this.colors[this.pickColor()]
+        let cantidad= this.esDificil? 6 : 3 
+        let number= Math.floor(Math.random() * cantidad);
+        console.log('NUMERO COLOR',number);
+        return number
       },
       changeData(estado){
         this.esDificil=estado
-        console.log('ES DIFICIL ',estado);
-        this.reset()
+        this.init()
       },
     },
     computed: {
