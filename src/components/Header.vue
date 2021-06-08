@@ -1,13 +1,13 @@
 <template>
 
 <section class="headerStyle">
-  <div id="headerStyle">
+  <div id="headerStyle" :style="getBackgroundColor" >
 		<h1>The Great <br>
-			<span id="colorDisplay">RGB {{colorElegido}}</span>
+			<span id="colorDisplay">RGB {{colorElegido | sacarRGB}}</span>
 			<br>
 			Guessing Game</h1>
 	</div>
-  <Navbar @colorElegidoHeader="setColorElegido($event)" />
+  <Navbar @colorElegidoHeader="setColorElegido($event)" @resetearHeader="reset()" @colorGanador="mostrarColorNav()" />
 </section>
 
 </template>
@@ -27,16 +27,35 @@
     },
     data () {
       return {
-        colorElegido:""
+        colorElegido:null,
+        colorBack:"steelblue"
       }
     },
     methods: {
       setColorElegido(color){
-        this.colorElegido = color.slice(3)
+        console.log('Seteo color elegido')
+        this.colorElegido = color
+      },
+      mostrarColorNav(){
+        this.colorBack=this.colorElegido
+      },
+      reset(){
+        console.log('RESET HEADER')
+        this.colorBack=null
       },
     },
+    filters:{
+      sacarRGB:value => {
+        if(value){ return value.slice(3)}
+      }
+    },
     computed: {
-
+      getBackgroundColor(){
+        console.log('Pase');
+        return{
+          'backgroundColor':this.colorBack ? this.colorBack : 'steelblue'
+        }
+      },
     }
 }
 

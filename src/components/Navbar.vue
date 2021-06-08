@@ -2,11 +2,11 @@
 
     <div id="navigator">
 		<button id="reset" @click="resetear()" > New colors</button>
-		<span id="message"> </span>
+		<span id="message">{{message}}</span>
 
 		<button id="easy" :class="getClass(!isHard)" @click="cambiarAfacil()">easy</button>
 		<button id="hard" :class="getClass(isHard)" @click="cambiarAdificil()">hard</button>
-        <Body :isHard="isHard" @colorElegido="setColorElegido($event)"  />
+        <Body :isHard="isHard" @colorElegido="setColorElegido($event)" @colorGanador="mostrarMensajeGanador()" />
 	</div>
 
 </template>
@@ -28,6 +28,7 @@
       return {
         isHard:true,
 		colorElegido:"",
+		message:""
       }
     },
     methods: {
@@ -51,11 +52,18 @@
 			}
 		},
 		resetear(){
+			this.message=""
 			this.$emit('resetear',this.isHard)
+			this.$emit('resetearHeader')
 		},
 		setColorElegido(color){
 			this.$emit('colorElegidoHeader',color)
-		}
+		},
+		mostrarMensajeGanador(){
+			this.message = "You Picked Right!"
+			console.log('MENSAJE ',this.message);
+			this.$emit('colorGanador')
+		},
     },
     computed: {
 		
@@ -76,7 +84,7 @@
 
 }
 #message {
-	color: #ffffff;
+	color: #000000;
 	display: inline-block;
 	width: 20%;
 }

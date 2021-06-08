@@ -1,8 +1,6 @@
 <template>
 
-  <div class="square" :style="{background: color}">
-    
-  </div>
+  <div class="square" :style="{background: color}" @click="clickCudrado()">  </div>
 
 </template>
 
@@ -20,7 +18,9 @@
       }
     },
     methods: {
-
+      clickCudrado(){
+        this.$emit('clickCuadrado',this.color)
+      }
     },
     computed: {
 
