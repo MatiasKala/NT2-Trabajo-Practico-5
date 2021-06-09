@@ -8,23 +8,21 @@
 
   export default  {
     name: 'square',
-    props: ['color'],
+    props: ['color','pos'],
     mounted () {
 
     },
     data () {
       return {
-
       }
     },
     methods: {
       clickCudrado(){
-        this.$emit('clickCuadrado',this.color)
+        this.$emit('clickCuadrado',[this.color,this.pos])
       }
     },
-    computed: {
-
-    }
+    watch: {
+    },
 }
 
 

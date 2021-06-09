@@ -2,14 +2,14 @@
 
   <div id="container">
     <div class="squares">
-      <Square :color="colors[0]" @clickCuadrado="clickCuadrado($event)"/>
-      <Square :color="colors[1]" @clickCuadrado="clickCuadrado($event)"/>
-      <Square :color="colors[2]" @clickCuadrado="clickCuadrado($event)"/>
+      <Square :color="colors[0]" :pos="0" @clickCuadrado="clickCuadrado($event)"/>
+      <Square :color="colors[1]" :pos="1" @clickCuadrado="clickCuadrado($event)"/>
+      <Square :color="colors[2]" :pos="2" @clickCuadrado="clickCuadrado($event)"/>
     </div>   
     <div v-show="isHard" class="squares">
-      <Square :color="colors[3]" @clickCuadrado="clickCuadrado($event)"/>
-      <Square :color="colors[4]" @clickCuadrado="clickCuadrado($event)"/>
-      <Square :color="colors[5]" @clickCuadrado="clickCuadrado($event)"/>
+      <Square :color="colors[3]" :pos="3" @clickCuadrado="clickCuadrado($event)"/>
+      <Square :color="colors[4]" :pos="4" @clickCuadrado="clickCuadrado($event)"/>
+      <Square :color="colors[5]" :pos="5" @clickCuadrado="clickCuadrado($event)"/>
     </div>   
   </div>
 
@@ -70,11 +70,14 @@
         this.init()
       },
       clickCuadrado(color){
-        if(color == this.pickedColor){
-          this.$emit('colorGanador',color)
+        if(color[0] == this.pickedColor){
+          this.$emit('colorGanador')
+          this.colors.fill(this.pickedColor)
         } else {
-          console.log('Segui tratando');
+          this.$emit('colorPerdedor')
+          this.colors[color[1]] = '#232323'
         }
+        this.$forceUpdate() 
       }
     },
     computed: {

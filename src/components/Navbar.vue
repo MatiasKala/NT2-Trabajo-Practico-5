@@ -6,7 +6,7 @@
 
 		<button id="easy" :class="getClass(!isHard)" @click="cambiarAfacil()">easy</button>
 		<button id="hard" :class="getClass(isHard)" @click="cambiarAdificil()">hard</button>
-        <Body :isHard="isHard" @colorElegido="setColorElegido($event)" @colorGanador="mostrarMensajeGanador()" />
+        <Body :isHard="isHard" @colorElegido="setColorElegido($event)" @colorGanador="mostrarMensajeGanador()" @colorPerdedor="mostrarMensajePerdedor()"/>
 	</div>
 
 </template>
@@ -61,8 +61,10 @@
 		},
 		mostrarMensajeGanador(){
 			this.message = "You Picked Right!"
-			console.log('MENSAJE ',this.message);
 			this.$emit('colorGanador')
+		},
+		mostrarMensajePerdedor(){
+			this.message = "Try Again!"
 		},
     },
     computed: {
