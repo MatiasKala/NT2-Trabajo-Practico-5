@@ -62,7 +62,6 @@
       pickColor(){
         let cantidad= this.esDificil? 6 : 3 
         let number= Math.floor(Math.random() * cantidad);
-        console.log('NUMERO COLOR',number);
         return number
       },
       changeData(estado){

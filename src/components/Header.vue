@@ -33,14 +33,12 @@
     },
     methods: {
       setColorElegido(color){
-        console.log('Seteo color elegido')
         this.colorElegido = color
       },
       mostrarColorNav(){
         this.colorBack=this.colorElegido
       },
       reset(){
-        console.log('RESET HEADER')
         this.colorBack=null
       },
     },
@@ -51,7 +49,6 @@
     },
     computed: {
       getBackgroundColor(){
-        console.log('Pase');
         return{
           'backgroundColor':this.colorBack ? this.colorBack : 'steelblue'
         }
