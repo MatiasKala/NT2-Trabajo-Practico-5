@@ -1,6 +1,8 @@
 <template>
 
-  <div class="square" :style="{background: color}" @click="clickCudrado()">  </div>
+  <div class="square" :style="{background: color}" @click="clickCudrado()">  
+    <div>{{contador}}</div>
+  </div>
 
 </template>
 
@@ -8,7 +10,7 @@
 
   export default  {
     name: 'square',
-    props: ['color','pos'],
+    props: ['color','pos','contador'],
     mounted () {
 
     },
@@ -21,7 +23,10 @@
         this.$emit('clickCuadrado',[this.color,this.pos])
       }
     },
-    watch: {
+    computed: {
+      c:()=>{console.log('entre')
+        return this.color
+      }
     },
 }
 

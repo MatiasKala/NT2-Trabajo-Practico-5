@@ -71,12 +71,16 @@
       clickCuadrado(color){
         if(color[0] == this.pickedColor){
           this.$emit('colorGanador')
-          this.colors.fill(this.pickedColor)
+          // for (let i = 0; i < this.colors.length; i++) {
+          // this.colors.splice(i, 1, this.pickedColor) 
+          // }
+          this.colors = this.colors.map(()=>{
+            return this.pickedColor
+          });
         } else {
           this.$emit('colorPerdedor')
-          this.colors[color[1]] = '#232323'
+          this.colors.splice([color[1]], 1, '#232323')
         }
-        this.$forceUpdate() 
       }
     },
     computed: {
